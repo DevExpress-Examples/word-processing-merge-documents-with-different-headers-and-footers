@@ -1,6 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
-Imports DevExpress.XtraRichEdit.API.Native
+﻿Imports DevExpress.XtraRichEdit.API.Native
 
 Namespace DocumentMerger.Helpers
 	Public Class SectionsMerger
