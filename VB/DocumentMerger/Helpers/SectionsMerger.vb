@@ -32,7 +32,7 @@ Namespace DocumentMerger.Helpers
 			target.Delete(emptyParagraph)
 
 			sourceSection.EndUpdateHeader(source)
-			targetSection.EndUpdateFooter(target)
+			targetSection.EndUpdateHeader(target)
 		End Sub
 
 		Private Shared Sub AppendFooter(ByVal sourceSection As Section, ByVal targetSection As Section, ByVal headerFooterType As HeaderFooterType)

@@ -30,7 +30,7 @@ namespace DocumentMerger.Helpers {
             target.Delete(emptyParagraph);
 
             sourceSection.EndUpdateHeader(source);
-            targetSection.EndUpdateFooter(target);
+            targetSection.EndUpdateHeader(target);
         }
 
         private static void AppendFooter(Section sourceSection, Section targetSection, HeaderFooterType headerFooterType) {
