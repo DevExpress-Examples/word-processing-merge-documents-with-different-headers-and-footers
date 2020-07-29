@@ -1,6 +1,4 @@
-Imports Microsoft.VisualBasic
-Imports System
-Imports DevExpress.XtraRichEdit.API.Native
+﻿Imports DevExpress.XtraRichEdit.API.Native
 
 Namespace DocumentMerger.Helpers
 	Public Class SectionsMerger
@@ -15,20 +13,28 @@ Namespace DocumentMerger.Helpers
 				Dim sourceSection As Section = source.Sections(i)
 				Dim targetSection As Section = target.Sections(lastSectionIndexBeforeAppending + i)
 
-				' Copy standard header/footer
+				' Copy header/footer
 				AppendHeader(sourceSection, targetSection, HeaderFooterType.Odd)
 				AppendFooter(sourceSection, targetSection, HeaderFooterType.Odd)
+				AppendHeader(sourceSection, targetSection, HeaderFooterType.Even)
+				AppendFooter(sourceSection, targetSection, HeaderFooterType.Even)
+				AppendHeader(sourceSection, targetSection, HeaderFooterType.First)
+				AppendFooter(sourceSection, targetSection, HeaderFooterType.First)
 			Next i
 		End Sub
 
 		Private Shared Sub AppendHeader(ByVal sourceSection As Section, ByVal targetSection As Section, ByVal headerFooterType As HeaderFooterType)
+			If Not sourceSection.HasHeader(headerFooterType) Then
+				Return
+			End If
+
 			Dim source As SubDocument = sourceSection.BeginUpdateHeader(headerFooterType)
 			Dim target As SubDocument = targetSection.BeginUpdateHeader(headerFooterType)
 			target.Delete(target.Range)
 			target.InsertDocumentContent(target.Range.Start, source.Range, InsertOptions.KeepSourceFormatting)
 
 			' Delete empty paragraphs
-			Dim emptyParagraph As DocumentRange = target.CreateRange(target.Range.End.ToInt() - 2, 2)
+			Dim emptyParagraph As DocumentRange = target.CreateRange(target.Range.End.ToInt() - 1, 1)
 			target.Delete(emptyParagraph)
 
 			sourceSection.EndUpdateHeader(source)
@@ -36,13 +42,17 @@ Namespace DocumentMerger.Helpers
 		End Sub
 
 		Private Shared Sub AppendFooter(ByVal sourceSection As Section, ByVal targetSection As Section, ByVal headerFooterType As HeaderFooterType)
+			If Not sourceSection.HasFooter(headerFooterType) Then
+				Return
+			End If
+
 			Dim source As SubDocument = sourceSection.BeginUpdateFooter(headerFooterType)
 			Dim target As SubDocument = targetSection.BeginUpdateFooter(headerFooterType)
 			target.Delete(target.Range)
 			target.InsertDocumentContent(target.Range.Start, source.Range, InsertOptions.KeepSourceFormatting)
 
 			' Delete empty paragraphs
-			Dim emptyParagraph As DocumentRange = target.CreateRange(target.Range.End.ToInt() - 2, 2)
+			Dim emptyParagraph As DocumentRange = target.CreateRange(target.Range.End.ToInt() - 1, 1)
 			target.Delete(emptyParagraph)
 
 			sourceSection.EndUpdateFooter(source)
