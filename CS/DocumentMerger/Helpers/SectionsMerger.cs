@@ -8,7 +8,7 @@ namespace DocumentMerger.Helpers {
 
             // Append document body
             target.AppendRtfText(source.RtfText);
-
+            target.DifferentOddAndEvenPages = source.DifferentOddAndEvenPages;
             for (int i = 0; i < sourceSectionCount; i++) {
                 Section sourceSection = source.Sections[i];
                 Section targetSection = target.Sections[lastSectionIndexBeforeAppending + i];
