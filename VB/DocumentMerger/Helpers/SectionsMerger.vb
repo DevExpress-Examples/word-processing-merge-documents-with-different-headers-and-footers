@@ -8,7 +8,7 @@ Namespace DocumentMerger.Helpers
 
 			' Append document body
 			target.AppendRtfText(source.RtfText)
-
+			target.DifferentOddAndEvenPages = source.DifferentOddAndEvenPages
 			For i As Integer = 0 To sourceSectionCount - 1
 				Dim sourceSection As Section = source.Sections(i)
 				Dim targetSection As Section = target.Sections(lastSectionIndexBeforeAppending + i)
