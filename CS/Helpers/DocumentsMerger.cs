@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using DevExpress.XtraRichEdit;
-using System.Data;
 using DevExpress.XtraRichEdit.API.Native;
 
 namespace DocumentMerger.Helpers {
     public class DocumentsMerger {
 
-        public static Document MergeDouments(List<string> filenames) {
+        public static string MergeDoсuments(List<string> filenames, string outputFileName) {
             RichEditDocumentServer targetServer = new RichEditDocumentServer();
             RichEditDocumentServer sourceServer = new RichEditDocumentServer();
             Document targetDoc = targetServer.Document;
@@ -24,12 +20,16 @@ namespace DocumentMerger.Helpers {
                 SectionsMerger.Append(sourceDoc, targetDoc);
 
                 if (i == filenames.Count - 1)
-                    return targetDoc;
+                {
+                    targetServer.SaveDocument(outputFileName, DocumentFormat.OpenXml);
+                    return outputFileName;
+                }
 
                 targetDoc.AppendSection();
+                targetServer.SaveDocument(outputFileName, DocumentFormat.OpenXml);
             }
 
-            return targetDoc;
+            return outputFileName;
         }
     }
 }
