@@ -21,7 +21,7 @@ This example shows how to merge documents with different headers and footers. Th
 
 * [Merge Word Documents](https://docs.devexpress.com/OfficeFileAPI/119802/word-processing-document-api/merge-and-split-documents/merge-documents)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=word-processing-merge-documents-with-different-headers-and-footers&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=word-processing-merge-documents-with-different-headers-and-footers&~~~was_helpful=no)
 
